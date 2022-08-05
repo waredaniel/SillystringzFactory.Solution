@@ -40,11 +40,11 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.MachineId)
-  @Html.LabelFor(model => model.MachineName)
+  @Html.Label("Machine Name:", null, new { @class="col-form-label col-sm-2" })
   @Html.EditorFor(model => model.MachineName)
-  @Html.LabelFor(model => model.MachineLocation)
+  @Html.Label("Machine Location:", null, new { @class="col-form-label col-sm-2" })
   @Html.EditorFor(model => model.MachineLocation)
-  @Html.LabelFor(model => model.MachineStatus)
+  @Html.Label("Machine Status:", null, new { @class="col-form-label col-sm-2" })
   @Html.EditorFor(model => model.MachineStatus)
 
   <input type="submit" value="Save Changes" />

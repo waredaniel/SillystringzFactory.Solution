@@ -5,7 +5,7 @@
 @model Factory.Models.Machine
 
 <div class="jumbotron text-center">
-  <h1> Machines Database</h1>
+  <h1> Add a Machine</h1>
 </div>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -40,19 +40,19 @@
 @using (Html.BeginForm())
 {
   <div class="form-group row mb-3">
-    @Html.LabelFor(model => model.MachineName, new { @class="col-form-label col-sm-2" })
+    @Html.Label("Machine Name", null, new { @class="col-form-label col-sm-2" })
     <div class="col-sm-10">  
       @Html.TextBoxFor(model => model.MachineName, new { @class="form-control", @required="required"})
     </div>
   </div>
   <div class="form-group row mb-3">
-    @Html.LabelFor(model => model.MachineLocation, new { @class="col-form-label col-sm-2" })
+    @Html.Label("Machine Location", null, new { @class="col-form-label col-sm-2" })
     <div class="col-sm-10">  
       @Html.TextBoxFor(model => model.MachineLocation, new { @class="form-control" })
     </div>
   </div>
   <div class="form-group row mb-3">
-    @Html.LabelFor(model => model.MachineStatus, new { @class="col-form-label col-sm-2" })
+    @Html.Label("Machine Status", null, new { @class="col-form-label col-sm-2" })
     <div class="col-sm-10">  
       @Html.TextBoxFor(model => model.MachineStatus, new { @class="form-control" })
     </div>

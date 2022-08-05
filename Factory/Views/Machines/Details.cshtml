@@ -37,9 +37,9 @@
   </div>
 </nav>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.MachineName): @Html.DisplayFor(model => model.MachineName)</h3>
-<h3>@Html.DisplayNameFor(model => model.MachineLocation): @Html.DisplayFor(model => model.MachineLocation)</h3>
-<h3>@Html.DisplayNameFor(model => model.MachineStatus): @Html.DisplayFor(model => model.MachineStatus)</h3>
+<h3>@Html.DisplayName("Machine Name"): @Html.DisplayFor(model => model.MachineName)</h3>
+<h3>@Html.DisplayName("Machine Location"): @Html.DisplayFor(model => model.MachineLocation)</h3>
+<h3>@Html.DisplayName("Current Status"): @Html.DisplayFor(model => model.MachineStatus)</h3>
 
 @if(@Model.JoinEntities.Count == 0)
 {

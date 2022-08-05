@@ -1,0 +1,60 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<div class="jumbotron text-center">
+  <h1> Engineer Details</h1>
+</div>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          @Html.ActionLink("Home", "Index", "Home", null, new { @class="nav-link" })
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Machines
+          </a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("All Machines", "Index", "Machines", null, new { @class="dropdown-item" })</li>
+            <li>@Html.ActionLink("Add New Machine", "Create", "Machines", null, new { @class="dropdown-item" })</li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Engineers
+          </a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("All Engineers", "Index", "Engineers", null, new { @class="dropdown-item" })</li>
+            <li>@Html.ActionLink("Add New Engineer", "Create", "Engineers", null, new { @class="dropdown-item" })</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<hr />
+<h3>@Html.DisplayName("Engineer Name"): @Html.DisplayFor(model => model.EngineerName)</h3>
+<h3>@Html.DisplayName("License Expiration Date"): @Html.DisplayFor(model => model.EngineerLicenseExpDate)</h3>
+<h3>@Html.DisplayName("Accident Count"): @Html.DisplayFor(model => model.EngineerAccidentCount)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Engineer is not currently assigned to any Machines</p>
+}
+else
+{
+  <h4> This Engineer's Machines:</h4>
+  <ul>
+    @foreach(var join in Model.JoinEntities)
+    {
+      <li>@join.Machine.MachineName</li>
+    }
+  </ul>
+}
+<p>@Html.ActionLink("Back to Engineers List", "Index")</p>
+<p>@Html.ActionLink("Edit This Engineer", "Edit", new { id= Model.EngineerId })</p>
+<p>@Html.ActionLink("Delete This Engineer", "Delete", new { id= Model.EngineerId })</p>
