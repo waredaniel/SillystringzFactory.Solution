@@ -2,10 +2,10 @@
   Layout = "_Layout";
 }
 
-@model Factory.Models.Engineer
+@model Factory.Models.Engineer;
 
 <div class="jumbotron text-center">
-  <h1> Engineer Details</h1>
+  <h1> Pair This Engineer with a Machine</h1>
 </div>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -37,32 +37,15 @@
   </div>
 </nav>
 <hr />
-<h3>@Html.DisplayName("Engineer Name"): @Html.DisplayFor(model => model.EngineerName)</h3>
-<h3>@Html.DisplayName("License Expiration Date"): @Html.DisplayFor(model => model.EngineerLicenseExpDate)</h3>
-<h3>@Html.DisplayName("Accident Count"): @Html.DisplayFor(model => model.EngineerAccidentCount)</h3>
 
-@if(@Model.JoinEntities.Count == 0)
+@using (Html.BeginForm())
 {
-  <p>This Engineer is not currently assigned to any Machines</p>
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.Label("Select Machine")
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Save" />
 }
-else
-{
-  <h4> This Engineer's Machines:</h4>
-  <ul>
-    @foreach(var join in Model.JoinEntities)
-    {
-      using (Html.BeginForm("DeleteMachine", "Engineers"))
-      {
-        @Html.Hidden("joinId", @join.EngineerMachineId)
-        <li>
-          @join.Machine.MachineName
-          <button type="submit" value="Remove Machine">Click Here to Remove Machine</button>
-        </li>
-      }
-    }
-  </ul>
-}
-<p>@Html.ActionLink("Add a Machine", "AddMachine", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Back to Engineers List", "Index")</p>
-<p>@Html.ActionLink("Edit This Engineer", "Edit", new { id= Model.EngineerId })</p>
-<p>@Html.ActionLink("Delete This Engineer", "Delete", new { id= Model.EngineerId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
