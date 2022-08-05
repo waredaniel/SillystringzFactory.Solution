@@ -56,47 +56,47 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-  //   public ActionResult Details(int id)
-  //   {
-  //     var thisProduct = _db.Products
-  //       .Include(product => product.JoinEntities)
-  //       .ThenInclude(join => join.Supplier)
-  //       .FirstOrDefault(product => product.ProductId == id);
-  //     return View(thisProduct);
-  //   }
+    public ActionResult Details(int id)
+    {
+      var thisMachine = _db.Machines
+        .Include(machine => machine.JoinEntities)
+        .ThenInclude(join => join.Engineer)
+        .FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
 
-  //   public ActionResult Delete (int id)
-  //   {
-  //     var thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
-  //     return View(thisProduct);
-  //   }
+    public ActionResult Delete (int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
 
-  //   [HttpPost, ActionName("Delete")]
-  //   public ActionResult DeleteConfirmed(int id)
-  //   {
-  //     var thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
-  //     _db.Products.Remove(thisProduct);
-  //     _db.SaveChanges();
-  //     return RedirectToAction("Index");
-  //   }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      _db.Machines.Remove(thisMachine);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-  //   public ActionResult Edit(int id)
-  //   {
-  //     var thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
-  //     ViewBag.ProductId = new SelectList(_db.Suppliers, "SupplierId", "SupplierName");
-  //     return View(thisProduct);
-  //   }
+    public ActionResult Edit(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      ViewBag.MachineId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
+      return View(thisMachine);
+    }
 
-  //   [HttpPost] 
-  //   public ActionResult Edit (Product product, int SupplierId)
-  //   {
-  //     if (SupplierId != 0)
-  //     {
-  //       _db.ProductSupplier.Add(new ProductSupplier() { SupplierId = SupplierId, ProductId = product.ProductId });
-  //     }
-  //     _db.Entry(product).State = EntityState.Modified;
-  //     _db.SaveChanges();
-  //     return RedirectToAction("Index");
-  //   }
+    [HttpPost] 
+    public ActionResult Edit (Machine machine, int EngineerId)
+    {
+      if (EngineerId != 0)
+      {
+        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
+      }
+      _db.Entry(machine).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
