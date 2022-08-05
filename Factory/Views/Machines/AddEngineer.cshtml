@@ -2,10 +2,10 @@
   Layout = "_Layout";
 }
 
-@model Factory.Models.Machine
+@model Factory.Models.Machine;
 
 <div class="jumbotron text-center">
-  <h1> Machines Details</h1>
+  <h1> Pair This Machine with an Engineer</h1>
 </div>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -37,25 +37,15 @@
   </div>
 </nav>
 <hr />
-<h3>@Html.DisplayName("Machine Name"): @Html.DisplayFor(model => model.MachineName)</h3>
-<h3>@Html.DisplayName("Machine Location"): @Html.DisplayFor(model => model.MachineLocation)</h3>
-<h3>@Html.DisplayName("Current Status"): @Html.DisplayFor(model => model.MachineStatus)</h3>
 
-@if(@Model.JoinEntities.Count == 0)
+@using (Html.BeginForm())
 {
-  <p>This machine currently has no assigned engineers</p>
+  @Html.HiddenFor(model => model.MachineId)
+
+  @Html.Label("Select Engineer")
+  @Html.DropDownList("EngineerId")
+
+  <input type="submit" value="Save" />
 }
-else
-{
-  <h4> This machine's engineers:</h4>
-  <ul>
-    @foreach(var join in Model.JoinEntities)
-    {
-      <li>@join.Engineer.EngineerName</li>
-    }
-  </ul>
-}
-<p>@Html.ActionLink("Add an Engineer", "AddEngineer", new { id = Model.MachineId })</p>
-<p>@Html.ActionLink("Back to Machines List", "Index")</p>
-<p>@Html.ActionLink("Edit This Machine", "Edit", new { id= Model.MachineId })</p>
-<p>@Html.ActionLink("Delete This Machine", "Delete", new { id= Model.MachineId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
